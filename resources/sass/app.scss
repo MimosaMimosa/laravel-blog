@@ -1,1 +1,27 @@
+@import "../../node_modules/@fortawesome/fontawesome-free/css/all.min.css";
+
+$primary:#9b5de5;
+
+$theme-colors: (
+  "blue-soft": #55c2da,
+  "purple": $primary,
+  "pink": #dd7973,
+  "red":#fb5607,
+  "yellow":#ffbe0b,
+  "white":#ffff,
+);
+
 @import "../../node_modules/bootstrap/scss/bootstrap";
+
+@each $color, $value in $theme-colors {
+  .btn-#{$color} {
+    @include button-variant($value, $value);
+    &:active{
+      background-color: #{shade-color($value,5%)};
+    }
+  }
+}
+.btn {
+  box-shadow: none !important;
+}
+

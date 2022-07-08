@@ -6,12 +6,14 @@ export default defineConfig({
         laravel([
             'resources/css/app.css',
             'resources/js/app.js',
+            'resources/js/alpine.js',
         ]),
 
     ],
     resolve: {
         alias: {
-            '@bootstrap': '/resources/sass/app.sass',
+            '@bootstrap': '/resources/sass/app.scss',
         },
     },
+
 });
