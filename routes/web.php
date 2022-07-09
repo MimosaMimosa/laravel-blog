@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\auth\UserController;
 use App\Http\Controllers\front\PostController;
 use Illuminate\Support\Facades\Route;
 
@@ -21,3 +22,10 @@ Route::get('/posts/{post}/edit', [PostController::class, 'edit'])->name('posts.e
 Route::put('/posts/{post}/update', [PostController::class, 'update'])->name('posts.update')->scopeBindings();
 Route::post('/posts', [PostController::class, 'store'])->name('posts.store');
 Route::delete('/posts/{post}/delete', [PostController::class, 'destroy'])->name('posts.destroy')->scopeBindings();
+
+
+Route::get('/users/register', [UserController::class, 'create'])->name('users.create');
+Route::post('/users', [UserController::class, 'store'])->name('users.store');
+Route::get('/users/login', [UserController::class, 'login'])->name('users.login');
+Route::post('/users/login', [UserController::class, 'authenticated'])->name('users.authenticated');
+Route::post('/users/logout', [UserController::class, 'logout'])->name('users.logout');

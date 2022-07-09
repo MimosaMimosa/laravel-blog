@@ -20,6 +20,7 @@
                                 <thead>
                                     <tr>
                                         <th>No</th>
+                                        <th>User</th>
                                         <th>Title</th>
                                         <th>Body</th>
                                         <th>Action</th>
@@ -29,6 +30,7 @@
                                     @forelse ($posts as $key => $post)
                                         <tr class="align-middle">
                                             <td>{{ $key + 1 }}</td>
+                                            <td>{{ $post->user->name }}</td>
                                             <td>{{ $post->title }}</td>
                                             <td>
                                                 <xmp>{!! $post->body !!}</xmp>

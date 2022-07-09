@@ -14,7 +14,8 @@ class Post extends Model
 
     protected $fillable = [
         'title',
-        'body'
+        'body',
+        'user_id'
     ];
 
     #[SearchUsingFullText(['bio'])]
@@ -24,5 +25,10 @@ class Post extends Model
             'title' => $this->email,
             'body' => $this->bio,
         ];
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

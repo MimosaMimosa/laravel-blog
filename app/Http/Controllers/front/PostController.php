@@ -18,7 +18,10 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::search(request('search'))->paginate(Admin::PAGINATION_LIMIT);
+        $posts = Post::search(request('search'), function ($query) {
+            return $query->with('user');
+        })
+            ->paginate(Admin::PAGINATION_LIMIT);
 
         return view('front.posts.index', compact('posts'));
     }
@@ -41,7 +44,9 @@ class PostController extends Controller
      */
     public function store(PostStoreRequest $request)
     {
+        $user = $request->user();
         $post = $request->only('title', 'body');
+        $post['user_id'] = $user->id;
         Post::create($post);
 
         return redirect()->route('posts.index');
